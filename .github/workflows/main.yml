@@ -1,0 +1,14 @@
+permissions:
+  contents: write
+on:
+  push:
+    branches: [main]
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      # https://github.com/marketplace/actions/checkout
+      - uses: actions/checkout@v7
+      - name: documentation
+        run: |
+          # make the table

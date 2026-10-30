@@ -20,6 +20,33 @@ npx skills update -g
 
 ## Skills
 
+```mermaid
+flowchart TD
+    B{Docs for your task exist?}
+
+    B -->|No| C["/"grill-with-docs]
+    B -->|Yes| D{Small task?}
+    C --> D
+
+    D -->|No| E["/"to-spec]
+    D -->|Yes| G{Already at 100k+ tokens in context?}
+    E --> G
+
+    G -->|Yes| H["/"to-tickets]
+    G -->|No| Q{Should I double-check this work?}
+    H --> Q
+
+    Q -->|Yes| I["/"implement]
+    Q -->|No| R[Prompt Normally]
+
+    R --> K["/"code-review]
+    I --> N{Does the context have info to improve future workflows?}
+    K --> N
+
+    N -->|Yes| O["/"retro]
+
+```
+
 <!-- SKILLS_TABLE_START -->
 | Skill | Description | Invocation |
 | --- | --- | --- |

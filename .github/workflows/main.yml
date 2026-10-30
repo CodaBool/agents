@@ -10,5 +10,49 @@ jobs:
       # https://github.com/marketplace/actions/checkout
       - uses: actions/checkout@v7
       - name: documentation
+        shell: python
         run: |
           # make the table
+          import pathlib, re
+
+          def frontmatter(path):
+              lines = path.read_text(encoding="utf-8").replace("\r\n", "\n").split("\n")
+              meta = {}
+              if lines[0] != "---":
+                  return meta
+              for line in lines[1:]:
+                  if line == "---":
+                      break
+                  key, sep, value = line.partition(":")
+                  if sep:
+                      meta[key.strip()] = value.strip().strip('"').strip("'")
+              return meta
+
+          def cell(text):
+              return text.replace("|", "\\|")
+
+          skills = []
+          for path in sorted(pathlib.Path("skills").glob("*/SKILL.md")):
+              meta = frontmatter(path)
+              name = meta.get("name", path.parent.name)
+              invocation = "manual" if meta.get("disable-model-invocation") == "true" else "auto"
+              skills.append((invocation != "manual", name, f"| [{name}]({path.parent.as_posix()}/SKILL.md) | {cell(meta.get('description', ''))} | {invocation} |"))
+
+          # manual first, then auto, alphabetical within each
+          rows = ["| Skill | Description | Invocation |", "| --- | --- | --- |"]
+          rows += [row for _, _, row in sorted(skills)]
+
+          readme = pathlib.Path("readme.md")
+          text = readme.read_text(encoding="utf-8")
+          pattern = re.compile(r"(<!-- SKILLS_TABLE_START -->).*?(<!-- SKILLS_TABLE_END -->)", re.S)
+          if not pattern.search(text):
+              raise SystemExit("readme.md is missing the SKILLS_TABLE_START/END markers")
+          table = "\n".join(rows)
+          readme.write_text(pattern.sub(lambda m: f"{m[1]}\n{table}\n{m[2]}", text), encoding="utf-8")
+      - name: commit
+        run: |
+          git diff --quiet readme.md && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898183+github-actions[bot]@users.noreply.github.com"
+          git commit -am "docs: update skills table"
+          git push

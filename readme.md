@@ -2,6 +2,17 @@
 
 > Matt Pocock writes great skills but they're more for teams
 
+## Install
+
+```sh
+npx skills add CodaBool/agents -g -a claude-code -a codex -y
+```
+
+> update
+```sh
+npx skills update -g
+```
+
 ## Manual Installs
 
 - npx skills add https://github.com/vercel-labs/agent-browser --skill agent-browser -a claude-code -a codex -g

@@ -18,6 +18,8 @@ npx skills update -g
 - npx skills add https://github.com/vercel-labs/agent-browser --skill agent-browser -a claude-code -a codex -g
   - npm install -g agent-browser --allow-scripts=agent-browser && agent-browser install
 
+- npx skills add https://github.com/cloudflare/skills -a claude-code -a codex -g
+
 ## Skills
 
 ```mermaid

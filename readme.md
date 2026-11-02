@@ -20,6 +20,9 @@ npx skills update -g
 
 - npx skills add https://github.com/cloudflare/skills -a claude-code -a codex -g
 
+## TODO
+- update /code-review so it can be written for no spec approach
+
 ## Skills
 
 ```mermaid

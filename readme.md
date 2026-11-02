@@ -66,7 +66,6 @@ flowchart TD
 | [diagnosing-bugs](skills/diagnosing-bugs/SKILL.md) | Diagnosis loop for hard bugs and performance regressions. Use when the user says "diagnose"/"debug this", or reports something broken/throwing/failing/slow. | auto |
 | [domain-modeling](skills/domain-modeling/SKILL.md) | Clarify a project's domain model during design or implementation. Use for ambiguous terminology, entity relationships, business rules, or conflicts between a feature spec and code. | auto |
 | [grilling](skills/grilling/SKILL.md) | Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases. | auto |
-| [playwright-browser](skills/playwright-browser/SKILL.md) | browser automation CLI. Chrome via CDP with compact element refs. | auto |
 | [prototype](skills/prototype/SKILL.md) | Build a throwaway prototype to answer a design question. Use when the user wants to sanity-check whether a state model or logic feels right, or explore what a UI should look like. | auto |
 | [research](skills/research/SKILL.md) | Investigate a question against high-trust primary sources and capture the findings as a Markdown file in the repo. Use when the user wants a topic researched, docs or API facts gathered, or reading legwork delegated to a background agent. | auto |
 | [tdd](skills/tdd/SKILL.md) | Test-driven development. Use when the user wants to build features or fix bugs test-first, or wants integration tests. | auto |

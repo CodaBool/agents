@@ -1,7 +1,6 @@
 ---
 name: retro
 description: "Conduct a retrospective on a coding session."
-disable-model-invocation: true
 source: https://github.com/mattpocock/skills/blob/main/skills/engineering/retro/SKILL.md
 ---
 
